@@ -104,6 +104,8 @@ unsigned int Fd[4];
 		return r;
 	}
 
+	rtlsdr_set_agc_mode(dev, 1);
+
 	if(gain > -1000) {
 		rtlsdr_set_tuner_gain_mode(dev, 1);
 		r=rtlsdr_set_tuner_gain(dev,gain);
