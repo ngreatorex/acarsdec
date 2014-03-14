@@ -15,6 +15,13 @@ Features :
 
 The 4 channels decoding is particularly useful with the rtl dongle. It allows to directly listen simultaneously to 4 different frequencies , with a very low cost hardware.
 
+Credits
+-------
+
+Based on acarsdec 2.1 Copyright (c) 2014 Thierry Leconte. See http://sourceforge.net/projects/acarsdec/.
+
+UDP output to PlanePlotter added by Neil Greatorex (https://github.com/ngreatorex/acarsdec/).
+
 
 Usage
 -----
