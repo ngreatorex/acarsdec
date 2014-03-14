@@ -120,6 +120,8 @@ unsigned int Fd[4];
 		r=rtlsdr_set_freq_correction(dev, ppm);
 		if (r < 0) 
 			fprintf(stderr, "WARNING: Failed to set freq. correction\n");
+		else if (verbose)
+			fprintf(stderr, "Set frequency correction to %d ppm\n", ppm);
 	}
 
 	nbch=0;
