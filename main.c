@@ -23,6 +23,7 @@
 #include <signal.h>
 #include <getopt.h>
 #include "acarsdec.h"
+#include "udp.h"
 
 channel_t channel[MAXNBCHANNELS];
 unsigned int  nbch;
@@ -43,7 +44,8 @@ static void usage(void)
 	fprintf(stderr, "Acarsdec 2.1 	Copyright (c) 2014 Thierry Leconte \n\n");
 	fprintf(stderr, "Usage: acarsdec  [-v] [-o lv] -a alsapcmdevice  | -f sndfile | -r rtldevicenumber  f1 [f2] [f3] [f4] \n\n");
 	fprintf(stderr, " -v :\t\t\tverbose\n");
-	fprintf(stderr, " -o lv :\t\toutput format : 0 one line by msg., 1 full (default) \n");
+	fprintf(stderr, " -o lv :\t\toutput format : 0 one line by msg., 1 full (default), 2 UDP to PlanePlotter \n");
+	fprintf(stderr, " -u host port :\tspecify the PlanePlotter host and port to send UDP messages to\n");
 	fprintf(stderr, " -A :\t\t\tdon't display uplink messages (ie : only aircraft messages)\n");
 	fprintf(stderr, " -g gain :\t\tset rtl preamp gain in tenth of db. By default use AGC (ie -g 90 for +9db)\n");
 	fprintf(stderr, " -p ppm :\t\tset rtl ppm frequency correction\n");
@@ -92,7 +94,7 @@ int main(int argc, char **argv)
 	unsigned long msk;
 	struct sigaction sigact;
 
-	while ((c = getopt(argc, argv, "vafro:g:Ap:")) != EOF) {
+	while ((c = getopt(argc, argv, "vafro:g:Ap:u")) != EOF) {
 
 
 		switch (c) {
@@ -100,7 +102,7 @@ int main(int argc, char **argv)
 			verbose=1;
 			break;
 		case 'o':
-			outtype=atoi(argv[optind]);
+			outtype=atoi(optarg);
 			break;
 		case 'a':
 #ifdef WITH_ALSA
@@ -135,6 +137,9 @@ int main(int argc, char **argv)
 			break;
 		case 'p':
 			ppm=atoi(optarg);
+			break;
+		case 'u':
+			init_udp(argv,optind);
 			break;
 		default:
 			usage();
@@ -183,6 +188,7 @@ int main(int argc, char **argv)
 		exit(res);
 	}
 
+	if(verbose) fprintf(stderr,"Output mode %d\n", outtype);
 	if(verbose) fprintf(stderr,"Decoding %d channels\n",nbch);
 
 	/* main decoding infinite loop */
