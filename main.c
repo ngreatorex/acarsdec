@@ -42,7 +42,7 @@ int ppm=0;
 static void usage(void)
 {
 	fprintf(stderr, "Acarsdec 2.1 	Copyright (c) 2014 Thierry Leconte \n\n");
-	fprintf(stderr, "Usage: acarsdec  [-v] [-o lv] -a alsapcmdevice  | -f sndfile | -r rtldevicenumber  f1 [f2] [f3] [f4] \n\n");
+	fprintf(stderr, "Usage: acarsdec [-v] [-o lv] [-u host port] [-A] [-g gain] [-p ppm] -a alsapcmdevice  | -f sndfile | -r rtldevicenumber  f1 [f2] [f3] [f4] \n\n");
 	fprintf(stderr, " -v :\t\t\tverbose\n");
 	fprintf(stderr, " -o lv :\t\toutput format : 0 one line by msg., 1 full (default), 2 UDP to PlanePlotter \n");
 	fprintf(stderr, " -u host port :\tspecify the PlanePlotter host and port to send UDP messages to\n");
