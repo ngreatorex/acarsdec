@@ -21,7 +21,7 @@
 #define WITH_RTL 1
 #define WITH_SNDFILE 1
 #define WITH_ALSA 1
-#define USE_SSE2
+#undef USE_SSE2
 
 
 #define MAXNBCHANNELS 4
