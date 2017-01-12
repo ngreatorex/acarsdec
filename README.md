@@ -1,5 +1,7 @@
+# **This is an outdated version of acarsdec. Please use the latest version at https://github.com/TLeconte/acarsdec**
+
 Acarsdec
-========
+--------
 
 Acarsdec is a multi-channels acars decoder with built-in rtl_sdr front end.
 
